@@ -1,0 +1,89 @@
+#Notification{
+    z-index: 1000;
+    position: fixed;
+    width: 300px;
+    display: flex;
+    top: 50px;
+    right: 10px;
+    overflow-y: hidden;
+    box-sizing: border-box;
+    flex-direction: column;
+    padding: 5px;
+}
+
+#Notification .alert{
+	position: relative;
+    float: right;
+    box-shadow: 0px 0px 10px #000000;
+    word-wrap: break-word;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: all 0.5s;
+    background: #47484b;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid #363636;
+}
+
+#Notification .alert.opened{
+    margin: 5px 5px 5px 0;
+    padding: 10px;
+    opacity: 0.85;
+    
+}
+
+#Notification .alert.close{
+    overflow: hidden;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+#Notification .alert.SUCCESS{
+    color: #67df69;
+}
+
+#Notification .alert.INFO{
+    color: #fff;
+}
+
+#Notification .alert.WARNING{
+    color: #ffffff;
+    background: #c65757;
+}
+
+#Notification .alert.DANGER{
+    color: #f2f27e;
+}
+
+#Notification .alert_content{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+#Notification .alert .alertIcon{
+	width: 30px;
+    height: 30px;
+    margin: 0 5px 0 0;
+    text-align: center;
+    font-size: 30px;
+    
+}
+#Notification .alert .alertmsg{
+	padding: 0 10px 0 5px;
+    word-break: break-all;
+    flex: 1;
+}
+#Notification .alert .close{
+	position: absolute;
+	top: 5px;
+    right: 5px;
+	outline: none;
+    color: #fff;
+}

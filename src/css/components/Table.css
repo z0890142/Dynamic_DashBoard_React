@@ -1,0 +1,163 @@
+.Table .propertyRow,
+.TableFlo .propertyRow{
+    margin: 5px;
+}
+
+.Table .propertyRow .propertyName,
+.TableFlo .propertyRow .propertyName
+{
+    border-bottom: 1px solid #3e4248;
+    color: #b8c987;
+    margin-bottom: 10px;
+}
+
+.Table .propertyRow .propertyName .expand,
+.TableFlo .propertyRow .propertyName .expand{
+    margin: 0 5px 0 0;
+    color: #99f499;
+    cursor: pointer;
+}
+
+.Table .propertyRow.collapsed .propertyName .expand,
+.Table .propertyRow .propertyName .expand:hover,
+.TableFlo .propertyRow.collapsed .propertyName .expand,
+.TableFlo .propertyRow .propertyName .expand:hover{
+    color: #81aa06;
+}
+.Table .propertyRow.collapsed .propertyName,
+.TableFlo .propertyRow.collapsed .propertyName{
+    margin-bottom: 0;
+}
+
+.Table .propertyRow .propertyName,
+.TableFlo .propertyRow .propertyName{
+    width: 100%;
+} 
+
+.Table .propertyRow .propertyVal,
+.TableFlo .propertyRow .propertyVal{
+    margin-bottom: 5px;
+    max-height: 60px;
+    height: 30px;
+    transition: all 0.5s;
+    opacity: 1;
+    color: #757575;
+    position: relative;
+    float: left;
+}
+
+.Table .propertyRow.collapsed .propertyVal,
+.TableFlo .propertyRow.collapsed .propertyVal{
+    height: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+
+.Table .propertyRow .subPropName,
+.TableFlo .propertyRow .subPropName{
+    padding: 0;
+    min-width: 68px;
+    text-align: center;
+    color: #929292;
+    position: relative;
+    float: left;
+    align-self: center;
+}
+
+.Table .propertyRow.collapsed .subPropName,
+.TableFlo .propertyRow.collapsed .subPropName{
+    padding: 0 5px 0 5px;
+    display: none;
+}
+
+.Table .propertyRow .subPropVal,
+.TableFlo .propertyRow .subPropVal{
+    flex: 1;
+    width: 100%;
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+
+.Table .propertyRow.collapsed .subPropVal,
+.TableFlo .propertyRow.collapsed .subPropVal{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.Table .propertyRow select,
+.TableFlo .propertyRow select{
+    border: 1px solid #4d4c4c;
+    background-color: #363942;
+    color: #d3d3d3;
+    outline: none;
+    height: 30px;
+    width: 100%;
+}
+
+.Table .propertyRow .mask,
+.TableFlo .propertyRow .mask{
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    background-color: #363942;
+    opacity: 0.9;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Table .propertyRow .mask .spinner,
+.TableFlo .propertyRow .mask .spinner{
+    margin: 0;
+}
+
+.Component.Table,
+.Component.TableFlo{
+    overflow: hidden;
+}
+
+.Component.Table .default,
+.Component.TableFlo .default{
+    font-size: 120px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    float: left;
+    color: #7d7d7d;
+    background-color: #dbdbdb;
+    opacity: 0.95;
+}
+
+.Component.Table .ChartTable,
+.Component.TableFlo .ChartTable{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.Component.Table .ChartTable .tableRow,
+.Component.TableFlo .ChartTable .tableRow{
+    flex: 1;
+}
+
+.Component.Table .ChartTable .tableRow .cell,
+.Component.TableFlo .ChartTable .tableRow .cell{
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: 0.5px solid #f4f4f4;
+    overflow-y: auto;
+    min-width: 80px;
+    min-height: 35px;
+    text-align: center;
+    padding: 3px;
+} 

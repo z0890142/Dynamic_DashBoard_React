@@ -1,0 +1,67 @@
+﻿.modal {
+    text-align: center;
+    padding: 0 !important;
+}
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: 500%;
+}
+
+legend {
+    color: white;
+    background-color: black;
+    padding: 5px 10px;
+    border-radius: 0;
+    border: 0;
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+input:checked {
+    border: 6px solid black;
+}
+
+#ModalSelectClass {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+#ModalSelectClass fieldset { 
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border: 2px groove (internal value);
+    border-bottom: 1px solid #ccc;
+}
+
+
+.selectItem{
+    /* width :200px; */
+    margin:2px 5px;
+    flex: none;
+  
+  }
+  
+#selectedTagID{
+margin-top: 60px;
+display: inline-flex;
+}
+  
+#selectedTagID input[type="text"]{  
+width:200px;
+}

@@ -1,0 +1,786 @@
+/* MapLayerSetting 台中圖資雲圖層設定視窗 */
+#MapLayerSetting{
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    width: 330px;
+    border-radius: 2px;
+    background-color: #fafafa;
+    font-family: "微軟正黑體", verdana, Arial, sans-serif;
+    box-shadow: 0px 0px 5px #747474;
+    z-index: 4;
+    display: none;
+    flex-direction: column;
+}
+
+#MapLayerSetting *::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+}
+
+#MapLayerSetting *::-webkit-scrollbar-track{
+    background-color: #dfdfdf;
+    border-radius: 10px;
+}
+
+#MapLayerSetting *::-webkit-scrollbar-thumb{
+    background-color: #b8b6bc;
+    border-radius: 100px;
+}
+
+#MapLayerSetting.opened{
+    display: flex;
+}
+
+#MapLayerSetting .propertyRow {
+    margin: 5px;
+}
+
+#MapLayerSetting .titleRow{
+    height: 30px;
+    background-color: #F9F9F9;
+    border-bottom: 1px solid #CCCCCC;
+    color: #000;
+    font-size: 14px;
+    font-family: 'Microsoft JhengHei' ,Tahoma,微軟正黑體, 'Trebuchet MS' ,Arial ,san-serif;
+    background: #ffffff;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(top, #ffffff 0%, #ededed 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ededed));
+    background: -webkit-linear-gradient(top, #ffffff 0%,#ededed 100%);
+    background: -o-linear-gradient(top, #ffffff 0%,#ededed 100%);
+    background: -ms-linear-gradient(top, #ffffff 0%,#ededed 100%);
+    background: linear-gradient(to bottom, #ffffff 0%,#ededed 100%);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#MapLayerSetting .titleRow i.closeWindow{
+    color: #aaa;
+    font-size: 16px;
+}
+
+#MapLayerSetting .titleRow i.closeWindow:hover{
+    color: #858585;
+}
+
+#MapLayerSetting .propertyRow .propertyName{
+    border-bottom: 1px solid #ddd;
+    color: #5c5c5c;
+    margin-bottom: 10px;
+}
+
+#MapLayerSetting .propertyRow .propertyName .expand{
+    margin: 0 5px 0 0;
+    color: #99f499;
+    cursor: pointer;
+}
+
+#MapLayerSetting .propertyRow.collapsed .propertyName .expand,
+#MapLayerSetting .propertyRow .propertyName .expand:hover{
+    color: #81aa06;
+}
+
+#MapLayerSetting .propertyRow.collapsed .propertyName{
+    margin-bottom: 0;
+}
+
+#MapLayerSetting .propertyRow .propertyVal{
+    margin-bottom: 5px;
+    height: 30px;
+    transition: all 0.5s;
+    opacity: 1;
+}
+
+#MapLayerSetting .propertyRow.collapsed .propertyVal{
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+*/
+#MapLayerSetting .propertyRow .subPropName{
+    padding: 5px;
+    min-width: 85px;
+    color: #898989;
+    text-align: center;
+}
+
+#MapLayerSetting .propertyVal.themeLayoutList{
+    height: 200px;
+    overflow-y: auto;
+}
+
+#MapLayerSetting .propertyVal.themeLayoutList .layerOption{
+    flex-shrink: 0;
+    color: #707070;
+    padding-left: 15px;
+    justify-content: space-between;
+}
+
+#MapLayerSetting .switchBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 65px;
+    min-height: 70%;
+    background-color: #f0b765;
+    text-align: center;
+    border-radius: 3px;
+    /* font-size: 18px; */
+    cursor: pointer;
+    margin: 5px;
+    color: #fff;
+    /* box-shadow: 0 0 5px #272727; */
+    border: 1px solid #b9b9b9;
+    position: relative;
+    float: left;
+    box-shadow: inset 1px 1px 3px #959595;
+}
+
+#MapLayerSetting .switchMask{
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    top: 0;
+    height: 100%;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 0;
+    color: #fff;
+    box-sizing: border-box;
+    font-size: 12px;
+    box-shadow: 0px 1px 1px #cdcdcd;
+    border-radius: 2px;
+    transition-property: left;
+    transition-duration: 0.25s;
+    transition-timing-function: ease;
+    transition-delay: 0.1s;
+    z-index: 2;
+}
+
+#MapLayerSetting .switchBtn .option{
+    font-size: 12px;
+    color: #fff;
+    z-index: 2;
+    flex: 1;
+}
+
+#MapLayerSetting .option.ON.current ~ .switchMask{
+    left: 50%;
+}
+
+#MapLayerSetting .option.OFF.current ~ .switchMask{
+    left: 0%;
+}
+
+#MapLayerSetting .tileLayer select#selectTile{
+    padding: 0 3px;
+    margin: 0 10px;
+    position: relative;
+    float: left;
+    display: flex;
+    flex: 1;
+    width: calc(100% - 20px);
+    border: 1px solid #ddd;
+}
+
+/* Taichung Map 大台中圖資雲地圖Popup視窗*/
+.Component.TaichungMap .TaichungMapPopupWindow{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    float: left;
+    min-width: 250px;
+    font-family: 微軟正黑體;
+    padding: 10px 5px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.Component.TaichungMap .TaichungMapPopupWindow .flex_row{
+    flex-shrink: 0;
+}
+
+.Component.TaichungMap .TaichungMapPopupWindow#CUST_7{
+    width: 400px;
+    height: 350px;
+}
+
+.Component.TaichungMap .TaichungMapPopupWindow#CUST_7 .cameraContainer{
+    height: 300px;
+    /*width: 400px;*/
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.Component.TaichungMap .mapContainer #popup-content code{
+    background: transparent;
+    padding: 0;
+}
+
+.Component.TaichungMap .mapContainer #popup-closer{
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    background: #000;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 25px;
+    right: -10px;
+    top: -10px;
+    border: 1px solid #afafaf;
+    outline: none;
+    text-decoration: none;
+    z-index: 1;
+}
+
+.Component.TaichungMap .mapContainer #popup-closer:hover{
+    background: #5f5f5f;
+}
+
+.Component.TaichungMap .mapContainer .key{
+    text-align: center;
+    min-width: 80px;
+    color: #98d99c;
+}
+
+.Component.TaichungMap .mapContainer .value{
+    flex: 1;
+    max-height: 130px;
+    min-width: 220px;
+    overflow-y: auto;
+    padding: 0 5px 0 5px;
+    color: #cecece;
+}
+
+.Component.TaichungMap .mapContainer #popup-content{
+    min-width: 200px;
+}
+.Component.TaichungMap .mapContainer #popup{
+    margin: 0;
+    padding: 0px;
+    background-color: #211f1f;
+    box-shadow: 0 0 5px #000;
+    border: 1px solid #232323;
+}
+.Component.TaichungMap .mapContainer #popup::after{
+    border-top-color: #211f1f;
+}
+
+.Component.TaichungMap .mapContainer #popup td,
+.Component.TaichungMap .mapContainer #popup tr{
+    color: #fff;
+    text-align: left;
+}
+
+.Component.TaichungMap .mapContainer .mapRowSplit{
+    margin: 6px;
+    border: 0.5px solid #3e3d3d;
+}
+
+/* Taichung Map 大台中圖資雲地圖 */
+.Component.TaichungMap{
+    background: #fdfdfd;
+}
+
+.Component.TaichungMap .mapContainer{
+    width: 100%;
+    height: 100%;
+}
+
+.Component.TaichungMap .menuContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    flex-wrap: wrap;
+    /* width: 100%; */
+    height: 35px;
+    /* background-color: #fff; */
+    /* opacity: 0.8; */
+}
+
+.Component.TaichungMap *::-webkit-scrollbar{
+    width: 5px;
+    height: 10px;
+}
+
+.Component.TaichungMap *::-webkit-scrollbar-track{
+    background-color: #dfdfdf;
+}
+
+.Component.TaichungMap *::-webkit-scrollbar-thumb{
+    background-color: #9c9a96;
+}
+
+.Component.TaichungMap .menuContainer.selected .menuBtn{
+    opacity: 0.5;
+}
+
+.Component.TaichungMap .menuContainer .menuBtn{
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+    color: #828282;
+    margin: 3px;
+    cursor: pointer;
+    box-shadow: 0 0 3px #989898;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+    position: relative;
+    float: left;
+}
+.Component.TaichungMap .menuContainer .menuBtn img{
+    width: 20px;
+    height: 20PX;
+}
+
+.Component.TaichungMap .menuContainer .menuBtn.selected{
+    background-color: #4285F4;
+    color: #fff;
+}
+
+.Component.TaichungMap .menuContainer .menuBtn:hover{
+    color: #676767;
+    background-color: rgb(255, 226, 173)!important;
+}
+
+.Component.TaichungMap .menuContainer .menuBtn:hover .subMenu{
+    display: block;
+    max-height: 250px;
+    overflow: auto;
+}
+
+.Component.TaichungMap .menuContainer .menuBtn .subMenu{
+    background-color: #fff;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    box-shadow: 0 0 5px;
+    display: none;
+}
+
+.Component.TaichungMap .menuContainer .menuBtn .subBtn{
+    display: flex;
+    align-items: center;
+    padding: 3px 5px;
+    border-bottom: 1px solid #e2e2e2;
+    font-size: 14px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    line-height: 100%;
+}
+
+.Component.TaichungMap .menuContainer .menuBtn .subBtn:hover{
+    background-color: #eae9e9;
+}
+
+.Component.TaichungMap .menuContainer .menuBtn .subBtn img{
+    width: 18px;
+    height: 18PX;
+}
+
+.Component.TaichungMap .menuContainer .menuBtn .subBtn .name{
+    justify-content: center;
+    font-style: initial;
+    padding: 3px 5px 3px 10px;
+    white-space: pre;
+    font-family: "微軟正黑體", verdana, Arial;
+}
+
+.Component.TaichungMap .menuContainer .search_place_input{
+    height: 30px;
+    width: 150px;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    opacity: 0.8;
+    font-size: 16px;
+    padding: 5px;
+    margin: 3px;
+    color: #737373;
+    font-family: 微軟正黑體;
+    box-shadow: 0 0 5px #989898;
+    /* display: none; */
+}
+
+.Component.TaichungMap .menuContainer .searchKeyword{
+    position: relative;
+    float: left;
+}
+
+.Component.TaichungMap .menuContainer .searchKeyword .subMenu{
+    /*display: none;*/
+    position: absolute;
+    left: 0;
+    top: 32px;
+    margin: 3px;
+    background-color: #fff;
+    color: #2e2e2e;
+    box-shadow: 0 0 5px #7e7e7e;
+    font-size: 14px;
+    font-family: 微軟正黑體;
+}
+
+.Component.TaichungMap #newsBar{
+    display: none;
+}
+
+/* 共用樣式 */
+.TaichungMap .propertyRow{
+    margin: 5px;
+}
+
+.TaichungMap .propertyRow .propertyName{
+    border-bottom: 1px solid #3e4248;
+    color: #b8c987;
+    margin-bottom: 10px;
+}
+
+.TaichungMap .propertyRow .propertyName .expand{
+    margin: 0 5px 0 0;
+    color: #99f499;
+    cursor: pointer;
+}
+
+.TaichungMap .propertyRow.collapsed .propertyName .expand,
+.TaichungMap .propertyRow .propertyName .expand:hover{
+    color: #81aa06;
+}
+.TaichungMap .propertyRow.collapsed .propertyName{
+    margin-bottom: 0;
+}
+
+.TaichungMap .propertyRow .propertyName{
+    width: 100%;
+} 
+
+.TaichungMap .propertyRow .propertyVal{
+    margin-bottom: 5px;
+    max-height: 60px;
+    height: 30px;
+    transition: all 0.5s;
+    opacity: 1;
+    color: #757575;
+    position: relative;
+    float: left;
+}
+
+.TaichungMap .propertyRow.collapsed .propertyVal{
+    height: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+
+.TaichungMap .propertyRow .subPropName{
+    padding: 5px 5px;
+    min-width: 80px;
+    text-align: center;
+    color: #929292;
+    position: relative;
+    float: left;
+}
+
+.TaichungMap .propertyRow.collapsed .subPropName{
+    padding: 0 5px 0 5px;
+    display: none;
+}
+
+.TaichungMap .propertyRow .subPropVal{
+    flex: 1;
+    width: 100%;
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+
+.TaichungMap .propertyRow.collapsed .subPropVal{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.TaichungMap .propertyRow select{
+    border: 1px solid #4d4c4c;
+    background-color: #363942;
+    color: #d3d3d3;
+    outline: none;
+    height: 30px;
+    width: 100%;
+}
+
+.TaichungMap .subPropVal input{
+    width: 100%;
+    color: #858585;
+    height: 30px;
+    padding: 5px;
+    font-size: 12px;
+    border: 1px solid #4d4c4c;
+    background-color: #363942;
+    color: #d3d3d3;
+}
+
+.TaichungMap .subPropVal input[readonly]{
+    background-color: #363942;
+    color: #898989;
+    outline: none;
+}
+
+.TaichungMap .propertyRow .mask{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: #363942;
+    opacity: 0.9;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.TaichungMap .propertyRow .mask .spinner{
+    margin: 0;
+}
+
+/* 分布地圖 加入圖層 */
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.LAYER_CODE  .selectLayerCode{
+    flex: 1;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.LAYER_CODE .addLayerCode{
+    position: relative;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#85d485, #85d485);
+    color: #272e38;
+    border-radius: 2px;
+    display: flex;
+    height: 30px;
+    padding: 0 5px;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.LAYER_CODE .addLayerCode:hover{
+    background: linear-gradient(#85d485, #49a649);
+    color: #272e38;
+}
+
+
+
+.property_row#MAP_LAYER_SOURCE .emptyMapLayerList{
+    text-align: center;
+    flex: 1;
+    font-style: italic;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .propertyVal {
+    max-height: none;
+    height: auto;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .propertyVal .selectedMapLayer {
+    position: relative;
+    float: left;
+    border: 1px solid #838686;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .propertyVal .selectedMapLayer i.removeLayer{
+    position: absolute;
+    right: -8px;
+    font-size: 12px;
+    color: #f1f1f1;
+    top: -8px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: #808080;
+    border-radius: 100%;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .propertyVal .selectedMapLayer:hover i.removeLayer{
+    opacity: 1;
+    background: #c67474;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .layerInfo{
+    flex-shrink: 0;
+    margin: 3px 0 3px 0;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .layerInfo.parentList{
+    border-bottom: 1px solid;
+    padding: 0 0 5px 0;
+    align-items: center;
+}  
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .layerInfo .selectParentComp{
+    border: none;
+    height: 20px;
+    color: #959595;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .layerInfo .addParent{
+    font-size: 12px;
+    padding: 0 5px;
+    background: #54575f;
+    /*color: #fff;*/
+    cursor: pointer;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .layerInfo .addParent:hover{
+    background: #7bc07b;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .layerInfo .title{
+    min-width: 65px;
+    color: #cacaca;
+    text-align: center;
+}
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .layerInfo .value{
+    flex: 1;
+    color: #959595;
+    word-break: break-word;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .parentInfo{
+    background-color: #7da57d;
+    color: #272e38;
+    margin: 3px 0;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .parentInfo .name{
+    padding: 3px;
+    background: #6a936a;
+    min-width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .parentInfo .parentLayer{
+    flex: 1;
+    flex-wrap: wrap;
+    word-break: break-all;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .parentInfo i.removeParent {
+    font-size: 12px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #65676e;
+    display: flex;
+    align-items: center;
+}
+
+.property_row#MAP_LAYER_SOURCE .propertyRow.MAP_LAYER_LIST .parentInfo i.removeParent:hover{
+    color: #fff;
+}
+
+.property_row#MAP_DEFAULT_LAYER .propertyRow.THEME_LAYER .propertyVal {
+    max-height: none;
+    height: auto;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.property_row#MAP_DEFAULT_LAYER .propertyRow.THEME_LAYER .layerOption{
+    flex-shrink: 0;
+    color: #a1a1a1;
+    padding-left: 15px;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.property_row#MAP_DEFAULT_LAYER .switchBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 65px;
+    height: 20px;
+    background-color: #f0b765;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 0 0 5px;
+    color: #fff;
+    border: 1px solid #b9b9b9;
+    position: relative;
+    float: left;
+    box-shadow: inset 1px 1px 3px #959595;
+}
+
+.property_row#MAP_DEFAULT_LAYER .switchMask{
+    position: absolute;
+    width: 50%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    line-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 0;
+    color: #fff;
+    box-sizing: border-box;
+    font-size: 12px;
+    box-shadow: 0px 1px 1px #cdcdcd;
+    border-radius: 2px;
+    transition-property: left;
+    transition-duration: 0.25s;
+    transition-timing-function: ease;
+    transition-delay: 0.1s;
+    z-index: 2;
+}
+
+.property_row#MAP_DEFAULT_LAYER .switchBtn .option{
+    font-size: 12px;
+    color: #fff;
+    z-index: 2;
+    flex: 1;
+}
+
+.property_row#MAP_DEFAULT_LAYER .option.ON.current ~ .switchMask{
+    left: 50%;
+}
+
+.property_row#MAP_DEFAULT_LAYER .option.OFF.current ~ .switchMask{
+    left: 0%;
+}

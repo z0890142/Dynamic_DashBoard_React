@@ -1,0 +1,2103 @@
+/* ComponentPropertiesSetting 元件屬性設定區塊 */
+
+#ComponentPropertiesSetting {
+    position: relative;
+    float: left;
+    width: 0;
+    height: 100%;
+    font-family: "微軟正黑體", verdana, Arial, sans-serif;
+    z-index: 4;
+    overflow: hidden;
+    opacity: 0;
+    /*display: none;*/
+    transition: opacity 0.3s 0.15s;
+    overflow: hidden;
+/*    display: flex;
+    flex-direction: column;*/
+}
+
+#ComponentPropertiesSetting.opened {
+    width: 100%;
+    opacity: 1;
+}
+
+
+/* 捲軸 */
+
+#ComponentPropertiesSetting div::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+#ComponentPropertiesSetting div::-webkit-scrollbar-track {
+    /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+    background-color: transparent;
+}
+
+#ComponentPropertiesSetting div::-webkit-scrollbar-thumb {
+    background-color: #b2b2b2;
+    border-radius: 10px;
+    /*box-shadow: 0 0 3px 1px #a0a0a0;*/
+}
+
+
+
+
+/* Slider */
+
+#ComponentPropertiesSetting input[type="range"] {
+    -webkit-appearance: none;
+    /* 限定範圍 */
+    width: 100%;
+    outline: none;
+    /* 避免點選會有藍線或虛線 */
+    background: transparent;
+}
+
+#ComponentPropertiesSetting input[type=range]:focus {
+    outline: none;
+    /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+
+
+/* IE Start */
+
+#ComponentPropertiesSetting input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    /* Hides the slider so custom styles can be added */
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+#ComponentPropertiesSetting input[type=range]::-ms-thumb {
+    width: 12px;
+    height: 12px;
+    background: #3194EC;
+    border-radius: 50%;
+    transition: .2s;
+    border: none;
+    /* 點選放大時候的漸變時間 */
+    cursor: pointer;
+    /*box-shadow: 0px 0px 6px 6px #88c4fa;*/
+}
+
+#ComponentPropertiesSetting input[type=range]::-ms-fill-lower {
+    width: 100%;
+    height: 6px;
+    cursor: pointer;
+    background: #3071a9;
+    border-radius: 1.3px;
+}
+
+
+/* IE END */
+
+
+/* Chrome Start */
+
+#ComponentPropertiesSetting input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* 設為相對位置，為了前後區塊的絕對位置而設定 */
+    position: relative;
+    top: -2px;
+    width: 12px;
+    height: 12px;
+    background: #2667a1;
+    border-radius: 50%;
+    transition: .2s;
+    /* 點選放大時候的漸變時間 */
+    cursor: pointer;
+    /*box-shadow: 0px 0px 6px 6px #88c4fa;*/
+}
+
+#ComponentPropertiesSetting input[type="range"]::-webkit-slider-thumb:before,
+#ComponentPropertiesSetting input[type="range"]::-webkit-slider-thumb:after {
+    position: absolute;
+    top: 3px;
+    width: 2000px;
+    /* 長度很長沒關係，因為剛剛有用 overflow:hidden 了 */
+    height: 4px;
+    content: "";
+    pointer-events: none;
+    /* 讓滑鼠可以點擊穿透偽元素，不然會點不到下面 */
+    transition: .2s;
+}
+
+#ComponentPropertiesSetting input[type="range"]:active::-webkit-slider-thumb:before,
+#ComponentPropertiesSetting input[type="range"]:active::-webkit-slider-thumb:after
+{
+  top: 6px;
+}
+
+#ComponentPropertiesSetting input[type="range"]:active::-webkit-slider-thumb {
+    width: 15px;
+    height: 15px;
+}
+
+#ComponentPropertiesSetting input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 6px;
+    cursor: pointer;
+    background: #4e4e4f;
+    border-radius: 1.3px;
+    border: 0.2px solid #010101;
+}
+
+/* Chrome End */
+
+/* Checkbox */
+#ComponentPropertiesSetting input[type=checkbox] {
+    outline: none;
+    border-radius:100%;
+    -webkit-appearance:button;
+    border: double 2px #848484;
+    background-color:#363942;
+    color:#FFF;
+    white-space: nowrap;
+    overflow:hidden;
+    transition: background-color 0.3s;
+}
+
+#ComponentPropertiesSetting input[type=checkbox]:checked {
+    background-color:#2667a1;
+    border: double 2px #848484;
+}
+
+#ComponentPropertiesSetting input[type=checkbox]:hover {
+    box-shadow:0px 0px 5px #626164;
+}
+
+
+#ComponentPropertiesSetting .setting {
+    position: relative;
+    float: left;
+    width: calc(100% - 20px);
+    margin: 5px 10px 0 10px;
+}
+
+.setting .panel_Btn {
+    position: relative;
+    float: left;
+    padding: 10px;
+    font-size: 18px;
+    height: 40px;
+    cursor: pointer;
+    color: #d3d3d3;
+}
+
+.setting .panel_Btn.selected {
+    color: #3194EC;
+}
+
+.setting .panel_Btn.displayNum.selected {
+    color: #DE6061;
+}
+
+.setting .panel_Btn.disabled {
+    color: #464b51;
+    cursor: auto;
+}
+
+
+#ComponentPropertiesSetting .content{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: calc(100% - 40px);
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+#ComponentPropertiesSetting .settingMenu{
+    position: relative;
+    float: left;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#ComponentPropertiesSetting .settingMenu.current{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.titlerow {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0px 10px 10px 0px;
+    color: #595353;
+    border-radius: 3px 3px 0px 0px;
+}
+
+.property_row {
+    position: relative;
+    float: left;
+    width: 100%;
+    min-height: 30px;
+    margin: 5px 0px 0px 0px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.infozone,
+.propzone {
+    border-bottom: 1px dashed #AAA;
+    color: #7D7777;
+    padding: 10px 0px 10px 10px;
+    font-size: 16px;
+}
+
+.property_row .desc {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-weight: bold;
+    padding: 0px 0px 5px 0px;
+    text-shadow: 1px 1px 2px #000000;
+    color: #c8c7c7;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+
+.property_row .desc.expandable{
+    cursor: pointer;
+}
+.property_row .desc.expandable:hover{
+    color: #fff;
+}
+
+.property_row .desc i{
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.property_row .val {
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 100%;
+    color: #605D5D;
+    font-size: 14px;
+/*    display: flex;
+    align-items: center;*/
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    -ms-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+
+.property_row .val input[type=text] {
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    line-height: 5px;
+    font-size: 12px;
+    border: 1px solid #4d4c4c;
+    background-color: #363942;
+    color: #d3d3d3;
+    outline: none;
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    -ms-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+
+.property_row input[readonly] {
+    background-color: #363942;
+    color: #858585;
+    border: none;
+}
+
+.property_row .val input[type=number] {
+    width: 100%;
+    padding: 5px;
+    font-size: 12px;
+    outline: none;
+    background-color: #363942;
+    color: #d3d3d3;
+    border: 1px solid #4d4c4c;
+}
+
+.property_row .val input[type=checkbox] {
+    width: 29px;
+    height: 29px;
+    outline: none;
+}
+
+.property_row .val select {
+    padding: 5px;
+    outline: none;
+    background-color: #363942;
+    color: #d3d3d3;
+    border: 1px solid #4d4c4c;
+    height: 30px;
+}
+
+.property_row.DisplayNum {
+    width: 50%;
+    padding: 0px 5px 0px 10px;
+    margin: 0px;
+}
+
+.property_row.DisplayNum button {
+    width: 100%;
+    padding: 5px;
+}
+
+.selectComp {
+    position: relative;
+    float: left;
+    width: auto;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.selectComp select {
+    height: 30px;
+    font-size: 12px;
+    width: 100%;
+    background: #4a4c53;
+    border: none;
+    color: #fff;
+}
+
+.selectComp button {
+    height: 30px;
+    font-size: 12px;
+    width: 100%;
+}
+
+.selectComp .dropdown-menu {
+    min-width: 135px;
+    left: 10px;
+}
+
+.property_row:not(.first):last-child {
+    border-radius: 0px 0px 5px 5px;
+}
+
+.flex_column {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    flex-direction: column;
+}
+
+.flex_row {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    flex-direction: row;
+}
+
+.flex_row_wrap {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+}
+
+
+.sub_row {
+    position: relative;
+    float: left;
+    min-height: 30px;
+    width: 50%;
+    /*padding: 5px;*/
+}
+
+.sub_row .sub_desc {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    padding: 0px 0px 5px 0px;
+    color: #929292;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.sub_row .sub_val {
+    display: flex;
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 100%;
+    color: #605D5D;
+    font-size: 14px;
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    -ms-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+
+.sub_row input {
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    line-height: 5px;
+    font-size: 12px;
+    border: 1px solid #4d4c4c;
+    background-color: #363942;
+    color: #d3d3d3;
+    outline: none;
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    -ms-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+
+.sub_row input[type=range] {
+    border: none;
+}
+
+
+
+
+
+
+/* Property Row Width */
+
+
+/* 100% */
+
+.StaticText .property_row#INIT_HINT,
+.StaticText .property_row#ALARMID_HINT,
+.DigitalText .property_row#ALARMID_HINT,
+.AliasText .property_row#ALARMID_HINT,
+.AliasText .property_row#INIT_HINT,
+.LinkText .property_row#INIT_HINT,
+.IFrame .property_row#INIT_HINT,
+.Gauge .property_row#ALARMID_HINT,
+.DynamicValueText .property_row#INIT_HINT,
+.DynamicValueText .property_row#ALARMID_HINT,
+.HIndicator .property_row#ALARMID_HINT,
+.VIndicator .property_row#ALARMID_HINT,
+.GridIndicator .property_row#ALARMID_HINT,
+.Region .property_row#INIT_HINT,
+.Region .property_row#ALARMID_HINT,
+.StaticImage .property_row#BACKGROUND_OPACITY,
+.HCharts .property_row#INIT_HINT{
+    width: 100%;
+}
+
+/* 75% */
+
+.property_row#ALARMID_HINT,
+.property_row#INIT_HINT,
+.StaticText .property_row#TEXT_VALUE,
+.DynamicValueText .property_row#TEXT_VALUE {
+    width: 75%;
+}
+
+
+/* 60% */
+
+.property_row#MIN_MAX_VALUE {
+    width: 60%;
+}
+
+
+/* 50% */
+
+.property_row#TYPE,
+.property_row#POSITION,
+.property_row#LAYER,
+.property_row#HOVER_IMAGES,
+.LinkImage .property_row#INIT_HINT,
+.property_row#TEXT_COLOR,
+.property_row#BACKGROUND_COLOR,
+.property_row#FONT_LIST,
+.property_row#TEXT_STYLE,
+.property_row#TIME_TEXT_SIZE,
+.property_row#TIME_TEXT_COLOR,
+.property_row#TIME_BACKGROUND_COLOR,
+.property_row#BACKGROUND_OPACITY,
+.property_row#TABLE_DIRECTION,
+.property_row#TABLE_ROW_COL,
+.DynamicValueText .property_row#TEXT_SIZE,
+.BubbleText .property_row#TEXT_SIZE,
+.Table .property_row#FONT_LIST,
+.property_row#XY,
+.property_row#WIDTH_HEIGHT {
+    width: 50%;
+}
+
+
+/* 40% */
+
+.property_row#UNIT {
+    width: 40%;
+}
+
+/* 25% */
+
+.property_row#LOCK,
+.property_row#ALARMID_IMAGE,
+.property_row#INIT_IMAGE,
+.property_row#PRECISION,
+.property_row#IFRAME_PREVIEW,
+.property_row#IFRAME_SCROLLING,
+.property_row#IMAGE_ASPECT_RATIO {
+    width: 25%;
+}
+
+.property_row#POINTER {
+    width: 23%;
+}
+
+/* 20% */
+
+.HIndicator .property_row#UNIT,
+.VIndicator .property_row#UNIT,
+.property_row#INDICATOR_METER {
+    width: 20%;
+}
+
+/* 15% */
+
+.IFrame .property_row#LOCK,
+.IFrame .property_row#IFRAME_PREVIEW,
+.IFrame .property_row#IFRAME_SCROLLING,
+.TableauComp .property_row#LOCK,
+.TableauComp .property_row#IFRAME_SCROLLING {
+    width: 16.5%;
+}
+
+
+/* Sub Row Width */
+
+
+/* 100% */
+
+.sub_row.DynamicPictureHint,
+.sub_row.DynamicTextStatus,
+.sub_row.Y_M_Color,
+.sub_row.Y_M_Size,
+.sub_row.Y_M_BKColor,
+.sub_row.D_Size,
+.sub_row.D_Color,
+.sub_row.D_BKColor,
+.sub_row.T_Size,
+.sub_row.T_Color,
+.sub_row.T_BKColor,
+.sub_row.Value_Size,
+.sub_row.Value_Color,
+.sub_row.Track_BkColor,
+.sub_row.Track_Width,
+.sub_row.Quantiy_Color,
+.sub_row.Track_Color,
+.sub_row.Quantiy_AlarmColor,
+.sub_row.Value_AlarmColor,
+.sub_row.Meter_ValueSize,
+.sub_row.Meter_ValueColor,
+.sub_row.Flow_Color,
+.sub_row.Flow_BkColor,
+.sub_row.Meter_Color,
+.sub_row.Font_Size,
+.sub_row.Header_Color,
+.sub_row.Header_BkColor,
+.sub_row.Header_Ratio,
+.sub_row.Border_Width,
+.sub_row.Border_Color,
+.sub_row.Cell_BkColor,
+.sub_row.Cell_FontColor,
+.sub_row.Cell_FontSize,
+.property_row#TEXT_DYNAMIC_KEYVALUE .sub_row,
+.property_row#LINK .sub_row
+{
+    width: 100%;
+}
+
+
+
+
+
+
+/* 70% */
+
+.sub_row.Tag_Name,
+.sub_row.Alarm_Name {
+    width: 70%;
+}
+
+
+
+
+
+
+/* 50% */
+
+.sub_row.Picture_HoverLeft,
+.sub_row.Picture_HoverOver {
+    width: 50%;
+}
+
+
+
+
+
+
+/* 47.5% */
+
+.sub_row.X,
+.sub_row.Y,
+.sub_row.WIDTH,
+.sub_row.HEIGHT,
+.sub_row.Max_Value,
+.sub_row.Min_Value,
+.sub_row.Row_Num,
+.sub_row.Col_Num {
+    width: 47.5%;
+}
+
+
+
+
+
+
+/* 30% */
+
+.sub_row.Bold,
+.sub_row.Italic,
+.sub_row.Underline {
+    width: 30%;
+}
+
+
+
+
+
+
+
+/* General Properties */
+
+.property_row#POSITION select {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 5px;
+    font-size: 12px;
+}
+
+.LinkText .property_row#POINTER,
+.DigitalText .property_row#LOCK,
+.StaticText .property_row#LOCK {
+    clear: both;
+}
+
+.sub_row.X,
+.sub_row.WIDTH {
+    margin-right: 5%;
+}
+
+.property_row#XY .posUnit,
+.property_row#WIDTH_HEIGHT select.unitWH {
+    width: 35px;
+    padding: 0;
+    text-align: center;
+    border: 1px solid #4d4c4c;
+    border-left: none;
+    color: #aaa;
+    text-align: center;
+    padding: 0 3px;
+    text-align-last: center;
+    background-color: #363942;
+}
+
+.property_row#XY select,
+.property_row#WIDTH_HEIGHT select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+.property_row#XY select::-ms-expand,
+.property_row#WIDTH_HEIGHT select::-ms-expand {
+    display: none;
+}
+
+.property_row#XY select:disabled,
+.property_row#WIDTH_HEIGHT select:disabled {
+    background-color: #363942;
+    border: none;
+}
+
+.property_row#LAYER .val{
+    display: flex;
+    flex-direction: row;
+}
+.property_row#LAYER .val span {
+    flex: 1;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 30px;
+    margin-right: 5px;
+    border-radius: 3px;
+    background-color: #363942;
+    cursor: pointer;
+    border: 1px solid #4d4c4c;
+}
+
+.property_row#LAYER .val span:last-child{
+    margin-right: 0;
+}
+
+.property_row#LAYER .val span:hover {
+    background-color: #4e4e4f;
+    color: #fff;
+}
+
+.StaticImage .property_row#IMAGE_ASPECT_RATIO {
+    clear: both;
+}
+
+
+.sub_row.DynamicPictureHint .sub_desc {
+    margin-top: 10px;
+}
+
+.sub_row.DynamicPictureHint .sub_desc:first-child {
+    margin-top: 0px;
+}
+
+.sub_row.Picture_HoverLeft,
+.sub_row.Picture_HoverOver {
+    padding-top: 0;
+}
+
+.sub_row.DynamicPictureHint .clearBtn,
+.sub_row.Picture_HoverLeft .clearBtn,
+.sub_row.Picture_HoverOver .clearBtn,
+.property_row#ALARMID_IMAGE .clearBtn,
+.property_row#INIT_IMAGE .clearBtn {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+    top: -6px;
+    left: 45px;
+    border-radius: 25px;
+    background-color: #aba9a9;
+    color: #fff;
+    opacity: 0;
+    /*border: 1px solid #fafafa;*/
+    transition: all 0.3s;
+    overflow: hidden;
+}
+
+.property_row#INIT_IMAGE .val:hover .clearBtn,
+.property_row#ALARMID_IMAGE .val:hover .clearBtn,
+.sub_row.DynamicPictureHint .sub_val:hover .clearBtn,
+.sub_row.Picture_HoverLeft .sub_val:hover .clearBtn,
+.sub_row.Picture_HoverOver .sub_val:hover .clearBtn {
+    opacity: 1;
+    background-color: #757575;
+    color: #fff;
+}
+
+
+.sub_row.DynamicPictureHint input[type=image],
+.property_row#ALARMID_IMAGE input[type=image],
+.sub_row.Picture_HoverLeft input[type=image],
+.sub_row.Picture_HoverOver input[type=image],
+.property_row#INIT_IMAGE input[type=image] {
+    margin-top: 5px;
+    width: 60px;
+    height: 60px;
+    background-color: initial;
+    border: 1px solid #4d4c4c;
+    outline: none;
+    padding: 0px;
+}
+
+.sub_row.DynamicPictureHint input[type=image]:hover,
+.property_row#ALARMID_IMAGE input[type=image]:hover,
+.property_row#INIT_IMAGE input[type=image]:hover,
+.sub_row.Picture_HoverLeft input[type=image]:hover,
+.sub_row.Picture_HoverOver input[type=image]:hover {
+    background-color: #e9e9e9;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sub_row.DynamicPictureHint input[type=image].selected,
+.property_row#ALARMID_IMAGE input[type=image].selected,
+.property_row#INIT_IMAGE input[type=image].selected,
+.sub_row.Picture_HoverLeft input[type=image].selected,
+.sub_row.Picture_HoverOver input[type=image].selected {
+    color: #6b9dff;
+    background-color: #59a8ee;
+    color: #fff;
+    font-weight: 700;
+}
+
+.sub_row.DynamicPictureHint .hint_textarea {
+    height: 60px;
+    width: calc(100% - 75px);
+    padding: 5px;
+    margin-top: 5px;
+    margin-left: 15px;
+    border: 1px solid #d4d3d3;
+    resize: none;
+    outline: none;
+    -ms-box-sizing: border-box!important;
+    box-sizing: border-box!important;
+}
+
+
+
+
+
+
+
+/* Alarm Image Properties */
+
+.property_row#INIT_HINT textarea {
+    height: 60px;
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #4d4c4c;
+    resize: none;
+    outline: none;
+    background-color: #363942;
+    color: #d3d3d3;
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    -ms-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+
+
+
+
+
+
+ /* Link Properties */
+
+.property_row#LINK .desc,
+.property_row#LINK {
+    border-bottom: 1px dashed #636366;
+    margin-bottom: 5px;
+}
+
+.property_row#LINK .sub_row.GraphicPage,
+.property_row#LINK .sub_row.SelfURL {
+    width: 100%;
+    padding: 5px;
+}
+
+.property_row#LINK .sub_row.GraphicPage,
+.property_row#LINK .sub_row.SelfURL {
+    width: 100%;
+}
+
+.property_row#LINK .sub_row.GraphicPage.checked,
+.property_row#LINK .sub_row.SelfURL.checked {
+    background-color: #363942;
+}
+
+.property_row#LINK .sub_row:hover {
+    background-color: #464951;
+}
+
+.property_row#LINK .sub_row.checked>.sub_val {
+    display: block;
+}
+
+.property_row#LINK .sub_desc {
+    padding: 0;
+    cursor: pointer;
+}
+
+.property_row#LINK .sub_val {
+    display: none;
+}
+
+.property_row#LINK .sub_val span {
+    position: relative;
+    float: left;
+    clear: both;
+    width: 30%;
+    padding: 0 2% 0 26px;
+    margin-bottom: 5px;
+    color: #aaa;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+.property_row#LINK .sub_val .changePage,
+.property_row#LINK .sub_val .displayType {
+    position: relative;
+    float: left;
+    width: 70%;
+    height: 30px;
+    font-size: 12px;
+    outline: none;
+    background-color: #363942;
+    color: #d3d3d3;
+    border: 1px solid #4d4c4c;
+}
+
+.property_row#LINK .sub_val .selfURL {
+    position: relative;
+    float: left;
+    width: 70%;
+    height: 30px;
+    line-height: 20px;
+}
+.property_row#LINK .sub_val .selfOAURL {
+    position: relative;
+    float: left;
+    width: 70%;
+    height: 30px;
+    line-height: 20px;
+}
+
+.property_row#LINK .sub_row .selectLinkType {
+    font-size: 23px;
+    padding: 0px;
+    line-height: 26px;
+    padding-right: 5px;
+    position: relative;
+    float: left;
+}
+
+.property_row#LINK .sub_row .LinkType {
+    position: relative;
+    float: left;
+    line-height: 24px;
+}
+
+
+
+ /*VIDEO_LINK */
+.property_row#VIDEO_LINK .val{
+    display: flex;
+
+}
+
+.property_row#VIDEO_LINK .displayType {
+    width: 30%;
+    height: 30px;
+    font-size: 12px;
+    border: 1px solid #4d4c4c;
+}
+
+.property_row#VIDEO_LINK .selfURL {
+    width: 70%;
+    min-width: 35px;
+    height: 30px;
+    padding: 5px;
+    line-height: 5px;
+    font-size: 12px;
+    outline: none;
+    background-color: #363942;
+    color: #d3d3d3;
+    border: 1px solid #4d4c4c;
+}
+
+
+
+
+
+
+/* 
+TEXT_SIZE
+TIME_TEXT_SIZE 
+BACKGROUND_OPACITY*/
+
+.property_row#TEXT_SIZE .val,
+.property_row#TIME_TEXT_SIZE .val,
+.property_row#BACKGROUND_OPACITY .val,
+.property_row#ROTATE_DEGREE .val {
+    display: flex;
+    align-items: center;
+}
+
+.property_row#TEXT_SIZE .rangeValue,
+.property_row#TIME_TEXT_SIZE .rangeValue,
+.property_row#BACKGROUND_OPACITY .rangeValue,
+.property_row#ROTATE_DEGREE .rangeValue {
+    position: relative;
+    float: left;
+    width: 15%;
+    text-align: center;
+    line-height: 30px;
+    padding: 0px;
+    color: #d3d3d3;
+}
+
+.FloorStatus .property_row#TEXT_SIZE .rangeValue {
+    width: 20%;
+}
+
+.property_row#TEXT_SIZE input[type=range],
+.property_row#TIME_TEXT_SIZE input[type=range],
+.property_row#BACKGROUND_OPACITY input[type=range],
+.property_row#ROTATE_DEGREE input[type=range] {
+    width: 85%;
+    height: 5px;
+    padding: 0;
+    float: left;
+    background-color: #4d4e51;
+    border-radius: 3px;
+}
+
+.FloorStatus .property_row#TEXT_SIZE input[type=range] {
+    width: 80%;
+}
+
+.property_row#BACKGROUND_OPACITY .rangeValue {
+    width: 25%;
+}
+
+.property_row#BACKGROUND_OPACITY input[type=range] {
+    width: 70%;
+    margin-left: 5%;
+}
+
+
+
+ 
+/*TEXT_COLOR
+BACKGROUND_COLOR
+ALARM_BACKGROUND_COLOR
+TIME_TEXT_COLOR
+TIME_BACKGROUND_COLOR*/
+
+
+.property_row#TEXT_COLOR input[type=text],
+.property_row#BACKGROUND_COLOR input[type=text],
+.property_row#TIME_TEXT_COLOR input[type=text],
+.property_row#TIME_BACKGROUND_COLOR input[type=text],
+.property_row#ALARM_BACKGROUND_COLOR input[type=text] {
+    padding-left: 30px;
+    height: 30px;
+    background-color: #363942;
+    color: #d3d3d3;
+    border: 1px solid #4d4c4c;
+}
+
+
+
+
+
+
+ /*TEXT_STYLE */
+.sub_row.Bold .sub_val,
+.sub_row.Italic .sub_val,
+.sub_row.Underline .sub_val {
+    justify-content: center;
+}
+
+.sub_row.Bold,
+.sub_row.Italic,
+.sub_row.Underline {
+    padding-top: 0;
+    margin-right: 5%;
+}
+
+.sub_row.Bold input[type=checkbox],
+.sub_row.Italic input[type=checkbox],
+.sub_row.Underline input[type=checkbox] {
+    position: relative;
+    float: left;
+    margin-left: 2px;
+    width: 30px;
+    height: 30px;
+}
+
+.sub_row.Bold .sub_desc,
+.sub_row.Italic .sub_desc,
+.sub_row.Underline .sub_desc {
+    text-align: center;
+}
+
+.sub_row.Underline {
+    margin-right: 0;
+}
+
+
+
+
+
+
+/* TEXT_ALIGN */
+
+.property_row#TEXT_ALIGN {
+    margin-top: 0;
+}
+
+.sub_row.Text_HAlign button,
+.sub_row.Text_VAlign button {
+    width: 33.3%;
+    height: 29px;
+    line-height: 1px;
+    margin: 4px 0px 0px 0px;
+    background-color: #363942;
+    color: #d3d3d3;
+    border: 1px solid #4d4c4c;
+}
+
+.sub_row.Text_HAlign button.active,
+.sub_row.Text_VAlign button.active {
+    background-color: #626164;
+}
+
+.sub_row.Text_VAlign {
+    padding-left: 5%;
+    padding-right: 0;
+}
+
+
+
+
+
+
+
+
+/* TAGID_DYNAMIC_TEXT */
+
+.sub_row.DynamicTextStatus {
+    margin-top: 15px;
+}
+
+.sub_row.DynamicTextStatus .sub_val {
+    border: 1px dashed #d0d0d0;
+    margin-bottom: 10px;
+    padding: 0 5px 5px;
+}
+
+.sub_row.DynamicTextStatus .sub_val .field_desc {
+    position: relative;
+    float: left;
+    width: 20%;
+    height: 35px;
+    line-height: 35px;
+    clear: both;
+    text-align: center;
+    font-size: 12px;
+    color: #949494;
+}
+
+.sub_row.DynamicTextStatus .minicolors {
+    position: relative;
+    float: left;
+    width: 80%;
+    margin: 2px 0;
+}
+
+.sub_row.DynamicTextStatus input.miniColorInput {
+    width: 100%;
+}
+
+.sub_row.DynamicTextStatus input.hint_input,
+.sub_row.DynamicTextStatus input.text_input {
+    position: relative;
+    float: left;
+    width: 80%;
+    margin: 2px 0;
+}
+
+
+
+
+
+
+/* 
+TEXT_DYNAMIC_KEYVALUE 
+*/
+
+.property_row#TEXT_DYNAMIC_KEYVALUE .val {
+    border: 1px dashed #d0d0d0;
+    padding: 0 5px 5px;
+    font-size: 12px;
+}
+
+.property_row#TEXT_DYNAMIC_KEYVALUE .field_desc {
+    position: relative;
+    float: left;
+    line-height: 30px;
+    text-align: center;
+    font-size: 10px;
+    color: #aaa;
+}
+
+.property_row#TEXT_DYNAMIC_KEYVALUE .field_desc:first-child {
+    width: 20%;
+    margin-left: 10%;
+}
+
+.property_row#TEXT_DYNAMIC_KEYVALUE .field_desc:nth-child(2) {
+    width: 70%;
+}
+
+.property_row#TEXT_DYNAMIC_KEYVALUE .removeOption {
+    position: relative;
+    float: left;
+    width: 10%;
+    text-align: center;
+    line-height: 31px;
+    color: #ff8787;
+}
+
+.property_row#TEXT_DYNAMIC_KEYVALUE .removeOption:hover {
+    color: #f00;
+    cursor: pointer;
+}
+
+.property_row#TEXT_DYNAMIC_KEYVALUE .addOption {
+    margin-left: 5px;
+}
+
+.property_row#TEXT_DYNAMIC_KEYVALUE .addOption:hover {
+    color: #59a8ee;
+    cursor: pointer;
+}
+
+.property_row#TEXT_DYNAMIC_KEYVALUE .sub_val {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.property_row#TEXT_DYNAMIC_KEYVALUE .sub_val .key {
+    width: 20%;
+    position: relative;
+    float: left;
+    margin: 0;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #cecece;
+    border-right: none;
+}
+
+.property_row#TEXT_DYNAMIC_KEYVALUE .sub_val .value {
+    width: 70%;
+    position: relative;
+    float: left;
+    padding: 5px;
+    border: 1px solid #cecece;
+}
+
+
+
+
+
+
+/* 
+CALENDAR_YEAR_MONTH
+CALENDAR_DATE
+CALENDAR_TIME
+GAUGE_VALUE
+GAUGE_TRACK
+TABLE_HEADERROW
+TABLE_GRID
+*/
+
+.property_row#CALENDAR_YEAR_MONTH .desc,
+.property_row#CALENDAR_DATE .desc,
+.property_row#CALENDAR_TIME .desc,
+.property_row#GAUGE_VALUE .desc,
+.property_row#GAUGE_TRACK .desc,
+.property_row#GAUGE_ALARM .desc,
+.property_row#INDICATOR_FLOW .desc,
+.property_row#TABLE_HEADERROW .desc,
+.property_row#TABLE_GRID .desc,
+.property_row#TABLE_HEADERROW_TEXT .desc {
+    border-bottom: 1px dashed #636366;
+}
+
+.property_row#CALENDAR_YEAR_MONTH .sub_row,
+.property_row#CALENDAR_DATE .sub_row,
+.property_row#CALENDAR_TIME .sub_row,
+.property_row#GAUGE_VALUE .sub_row,
+.property_row#GAUGE_TRACK .sub_row,
+.property_row#GAUGE_ALARM .sub_row,
+.property_row#INDICATOR_FLOW .sub_row,
+.property_row#TABLE_HEADERROW .sub_row,
+.property_row#TABLE_GRID .sub_row {
+    /*padding-right: 10px;*/
+}
+
+.property_row#CALENDAR_YEAR_MONTH .sub_row:last-child,
+.property_row#CALENDAR_DATE .sub_row:last-child,
+.property_row#CALENDAR_TIME .sub_row:last-child,
+.property_row#GAUGE_VALUE .sub_row:last-child,
+.property_row#GAUGE_TRACK .sub_row:last-child,
+.property_row#GAUGE_ALARM .sub_row:last-child,
+.property_row#INDICATOR_FLOW .sub_row:last-child,
+.property_row#TABLE_HEADERROW .sub_row:last-child,
+.property_row#TABLE_GRID .sub_row:last-child {
+    /*border-bottom: 1px dashed #d0d0d0;*/
+    /*padding-bottom: 5px;*/
+}
+
+.property_row#CALENDAR_YEAR_MONTH .sub_desc,
+.property_row#CALENDAR_DATE .sub_desc,
+.property_row#CALENDAR_TIME .sub_desc,
+.property_row#GAUGE_VALUE .sub_desc,
+.property_row#GAUGE_TRACK .sub_desc,
+.property_row#GAUGE_ALARM .sub_desc,
+.property_row#INDICATOR_FLOW .sub_desc,
+.property_row#TABLE_HEADERROW .sub_desc,
+.property_row#TABLE_GRID .sub_desc {
+    width: 25%;
+    line-height: 35px;
+    text-align: center;
+    padding: 0;
+}
+
+.property_row#CALENDAR_YEAR_MONTH .sub_val,
+.property_row#CALENDAR_DATE .sub_val,
+.property_row#CALENDAR_TIME .sub_val,
+.property_row#GAUGE_VALUE .sub_val,
+.property_row#GAUGE_TRACK .sub_val,
+.property_row#GAUGE_ALARM .sub_val,
+.property_row#INDICATOR_FLOW .sub_val,
+.property_row#TABLE_HEADERROW .sub_val,
+.property_row#TABLE_GRID .sub_val {
+    width: 75%;
+}
+
+.property_row#CALENDAR_YEAR_MONTH .sub_val .rangeValue,
+.property_row#CALENDAR_DATE .sub_val .rangeValue,
+.property_row#CALENDAR_TIME .sub_val .rangeValue,
+.property_row#GAUGE_VALUE .sub_val .rangeValue,
+.property_row#GAUGE_TRACK .sub_val .rangeValue,
+.property_row#INDICATOR_FLOW .sub_val .rangeValue,
+.property_row#TABLE_HEADERROW .sub_val .rangeValue,
+.property_row#TABLE_GRID .sub_val .rangeValue {
+    width: 17%;
+    min-width: 35px;
+    font-size: 12px;
+    position: relative;
+    float: left;
+    line-height: 35px;
+    text-align: left;
+}
+
+.property_row#CALENDAR_YEAR_MONTH .sub_val .fontSize,
+.property_row#CALENDAR_DATE .sub_val .fontSize,
+.property_row#CALENDAR_TIME .sub_val .fontSize,
+.property_row#GAUGE_VALUE .sub_val .fontSize,
+.property_row#GAUGE_TRACK .sub_val .fontSize,
+.property_row#INDICATOR_FLOW .sub_val .fontSize,
+.property_row#TABLE_HEADERROW .sub_val .fontSize,
+.property_row#TABLE_GRID .sub_val .fontSize {
+    width: 83%;
+    position: relative;
+    float: left;
+    height: 35px;
+}
+
+.property_row#CALENDAR_YEAR_MONTH .sub_val input.miniColorInput,
+.property_row#CALENDAR_DATE .sub_val input.miniColorInput,
+.property_row#CALENDAR_TIME .sub_val input.miniColorInput,
+.property_row#GAUGE_VALUE .sub_val input.miniColorInput,
+.property_row#GAUGE_TRACK .sub_val input.miniColorInput,
+.property_row#GAUGE_ALARM .sub_val input.miniColorInput,
+.property_row#INDICATOR_FLOW .sub_val input.miniColorInput,
+.property_row#TABLE_HEADERROW .sub_val input.miniColorInput,
+.property_row#TABLE_GRID .sub_val input.miniColorInput {
+    width: 100%;
+    color: #d3d3d3;
+}
+
+
+
+
+
+
+/* MIN_MAX_VALUE */
+
+.property_row#MIN_MAX_VALUE .Min_Value {
+    margin-right: 5%;
+}
+
+
+
+
+
+
+/* TABLE_ROW_COL */
+
+.property_row#TABLE_ROW_COL .Row_Num {
+    margin-right: 5%;
+}
+
+
+
+
+
+
+/* TABLE_DIRECTION */
+
+.property_row#TABLE_DIRECTION select {
+    height: 30px;
+    padding: 3px;
+}
+
+.property_row#TABLE_HEADERROW_TEXT .val {
+    padding: 5px;
+}
+
+.property_row#TABLE_HEADERROW_TEXT .title {
+    font-size: 12px;
+    position: relative;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    width: 15%;
+    text-align: center;
+    color: #aaa;
+}
+
+.property_row#TABLE_HEADERROW_TEXT input.text {
+    position: relative;
+    float: left;
+    width: 85%;
+    font-size: 12px;
+    background-color: #363942;
+    margin-bottom: 5px;
+    color: #d3d3d3;
+}
+
+
+
+
+
+
+/* BORDER_STYLE_SETTING */
+
+.property_row#BORDER_STYLE_SETTING .sub_row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.property_row#BORDER_STYLE_SETTING .desc {
+    border-bottom: 1px dashed #636366;
+}
+
+.property_row#BORDER_STYLE_SETTING .sub_row {
+    /*padding-right: 10px;*/
+    margin-bottom: 3px;
+}
+
+.property_row#BORDER_STYLE_SETTING .sub_desc {
+    flex: 1;
+    text-align: center;
+    padding: 0;
+    max-width: 100px;
+}
+
+.property_row#BORDER_STYLE_SETTING .sub_val {
+    flex: 2;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+
+.property_row#BORDER_STYLE_SETTING .sub_row.Border_Line select {
+    width: 100%;
+    height: 30px;
+    border-radius: 2px;
+    margin: 5px 0 0 0;
+    padding: 0 5px 0 5px;
+    font-size: 12px;
+    background-color: #363942;
+    color: #d3d3d3;
+    border: 1px solid #4d4c4c;
+}
+
+.property_row#BORDER_STYLE_SETTING .sub_val .rangeValue {
+    /*width: 17%;*/
+    font-size: 12px;
+    /*    position: relative;
+    float: left;*/
+    line-height: 35px;
+    text-align: left;
+    padding-right: 10px;
+}
+
+.property_row#BORDER_STYLE_SETTING .sub_val input.borderRadius {
+    /*margin-left: 10px;*/
+    flex: 1
+}
+
+.property_row#BORDER_STYLE_SETTING .sub_row.Border_Style .minicolors {
+    top: 0;
+    width: 30px;
+    margin: 0 0 0 5px;
+    border: 1px solid #4d4c4c;
+}
+
+.property_row#BORDER_STYLE_SETTING .sub_row.Border_Style .minicolors input[type=hidden]+.minicolors-swatch {
+    width: 20px;
+}
+
+
+
+
+
+
+/* MAP_LAT_LNG */
+
+.SEARCH_PLACE .defineLatLngBtn {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #d4d4d4;
+    text-align: center;
+    color: #fff;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.SEARCH_PLACE .defineLatLngBtn:hover {
+    background-color: #bbc800;
+}
+
+.SEARCH_PLACE .defineLatLngBtn.selected {
+    background-color: #bbc800;
+}
+
+.sub_row.SEARCH_PLACE {
+    width: 10%;
+}
+
+.sub_row.LATITUDE,
+.sub_row.LONGITUDE {
+    width: 47.5%;
+}
+
+.sub_row.LATITUDE,
+.sub_row.SEARCH_PLACE {
+    margin-right: 5%;
+}
+
+
+
+
+
+
+
+/* MAP_ZOOMING */
+
+.property_row#MAP_ZOOMING .rangeValue {
+    position: relative;
+    float: left;
+    width: 15%;
+    text-align: center;
+    line-height: 30px;
+    padding: 0px;
+    color: #696565;
+}
+
+.FloorStatus .property_row#MAP_ZOOMING .rangeValue {
+    width: 20%;
+}
+
+.property_row#MAP_ZOOMING input[type=range] {
+    width: 85%;
+    height: 5px;
+    padding: 0;
+    float: left;
+    background-color: #4d4e51;
+    border-radius: 3px;
+}
+
+.FloorStatus .property_row#MAP_ZOOMING input[type=range] {
+    width: 80%;
+}
+
+
+
+
+
+
+/* MAP_MARKSHAPES */
+
+.GraphicMap .shapes_container {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.GraphicMap .shape_item {
+    display: flex;
+    position: relative;
+    float: left;
+    width: 100%;
+    flex-direction: column;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+.GraphicMap .shape_item:first-child {
+    border-top: 1px solid #ddd;
+}
+
+.GraphicMap .shape_item:last-child {
+    border-bottom: 1px solid #ddd;
+}
+
+.GraphicMap .shape_item .shape_title {
+    /*background-color: #e0d7ef;*/
+    width: 100%;
+    padding: 5px;
+    color: #505050;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#fff, #f1f1f1);
+}
+
+.GraphicMap .shape_item .shape_title i {
+    padding: 5px;
+    font-size: 12px;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    background: #C1CB97;
+    border-radius: 100%;
+    cursor: pointer;
+    margin-right: 3px;
+}
+
+.GraphicMap .shape_item .shape_title i:hover {
+    background: #69B46D;
+}
+
+.GraphicMap .shape_item .shape_name {
+    background: transparent;
+    outline: none;
+    border: none;
+    padding: 5px;
+    flex: 1;
+}
+
+.GraphicMap .shape_item .shape_infos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: #ffffff;
+}
+
+.GraphicMap .shape_item .shape_info {
+    /*    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 3px 0;
+    padding: 5px;*/
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /*margin: 3px 0;*/
+    padding: 5px 0;
+    position: relative;
+    float: left;
+    width: 50%;
+}
+
+.GraphicMap .shape_item .shape_info .info_desc {
+    flex: 1;
+    text-align: center;
+}
+
+.GraphicMap .shape_item .shape_info .info_value {
+    flex: 1.5;
+    display: flex;
+    align-items: center;
+}
+
+.GraphicMap .shape_item .shape_info .minicolors.minicolors-theme-fontColor {
+    top: 0;
+}
+
+.GraphicMap .shape_item .shape_info input.borderColor,
+.GraphicMap .shape_item .shape_info input.shapeColor {
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+.GraphicMap .shape_item .info_value .borderWidth,
+.GraphicMap .shape_item .info_value .shapeOpacity {
+    text-align: center;
+    border: 1px solid #ddd;
+    height: 28px;
+    position: relative;
+    float: left;
+    width: 100%;
+    margin-right: 5px;
+}
+
+.GraphicMap .shape_item .info_value .minicolors-theme-fontColor.minicolors {
+    top: 0;
+    margin: 0 5px;
+}
+
+
+
+
+
+
+/* INTERACT_COMP_SETTING */
+
+.property_row#INTERACT_COMP_SETTING .interact_comp_list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.property_row#INTERACT_COMP_SETTING .interact_comp_list .addInteractComp {
+    text-align: center;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    background-color: #bdbef5;
+    color: #ffffff;
+    border-radius: 100%;
+    margin-right: 5px;
+}
+
+.property_row#INTERACT_COMP_SETTING .interact_comp_list .addInteractComp:hover {
+    background-color: #3194ec;
+}
+
+.property_row#INTERACT_COMP_SETTING .interact_comp_list select {
+    flex: 1;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    height: 30px;
+}
+
+.property_row#INTERACT_COMP_SETTING .removeInteractComp {
+    width: 20px;
+    font-size: 16px;
+    color: #ddd;
+    text-align: center;
+    cursor: pointer;
+    padding-right: 5px;
+}
+
+.property_row#INTERACT_COMP_SETTING .removeInteractComp:hover {
+    color: #f00;
+}
+
+.property_row#INTERACT_COMP_SETTING .val {
+    font-size: 12px;
+}
+
+.property_row#INTERACT_COMP_SETTING .field_desc {
+    position: relative;
+    float: left;
+    line-height: 30px;
+    text-align: center;
+    font-size: 10px;
+    color: #aaa;
+    width: 100%;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-bottom: none;
+}
+
+.property_row#INTERACT_COMP_SETTING .field_desc span {
+    flex: 2;
+}
+
+.property_row#INTERACT_COMP_SETTING .field_desc span:nth-child(1) {
+    padding: 0 5px 0 25px;
+}
+
+.property_row#INTERACT_COMP_SETTING .field_desc span:nth-child(2) {
+    padding: 0 5px;
+}
+
+.property_row#INTERACT_COMP_SETTING .sub_val {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    align-items: center;
+    position: relative;
+    float: left;
+    margin-bottom: 5px;
+    width: 100%;
+    align-items: center;
+    padding: 0 5px;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+.property_row#INTERACT_COMP_SETTING .sub_val:last-child {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.property_row#INTERACT_COMP_SETTING .sub_val .display_name,
+.property_row#INTERACT_COMP_SETTING .sub_val .display_type {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #cecece;
+    text-align: center;
+}
+
+.loadingMask>div {
+    width: 15px;
+    height: 15px;
+    margin-right: 2px;
+    background-color: #c7c7c7;
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+    animation: bouncedelay 1.4s infinite ease-in-out;
+    /* Prevent first frame from flickering when animation starts */
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.loadingMask .b1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.loadingMask .b2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+
+
+
+
+
+
+/* INDICATOR_GRID */
+
+.property_row#INDICATOR_GRID .val {
+    border: 1px solid #4d4c4c;
+    padding: 5px;
+    color: #929292;
+    font-size: 12px;
+    flex-wrap: wrap;
+}
+
+.property_row#INDICATOR_GRID .attr_title {
+    width: 50px;
+    text-align: center;
+}
+
+.property_row#INDICATOR_GRID .Grid_Orient {
+    width: 100%;
+    border-bottom: 1px dashed #636366;
+    padding: 5px 0 10px 0;
+    justify-content: center;
+}
+
+.property_row#INDICATOR_GRID .Grid_Orient .orient_type {
+    flex: 1;
+    justify-content: space-around;
+}
+
+.property_row#INDICATOR_GRID .Grid_ValueColor,
+.property_row#INDICATOR_GRID .Grid_BkColor,
+.property_row#INDICATOR_GRID .Grid_ScaleColor,
+.property_row#INDICATOR_GRID .Grid_BorderColor,
+.property_row#INDICATOR_GRID .Grid_BorderWidth,
+.property_row#INDICATOR_GRID .Grid_Padding,
+.property_row#INDICATOR_GRID .Grid_Radius {
+    width: 50%;
+    margin: 5px 0;
+    align-items: center;
+    display: flex;
+    height: 30px;
+}
+
+.property_row#INDICATOR_GRID .Grid_BorderWidth,
+.property_row#INDICATOR_GRID .Grid_Padding,
+.property_row#INDICATOR_GRID .Grid_Radius {
+    width: 33%;
+}
+
+.property_row#INDICATOR_GRID .minicolors-theme-fontColor.minicolors {
+    flex: 1;
+    top: 0;
+}
+
+.property_row#INDICATOR_GRID input.miniColorInput {
+    width: 100%;
+    height: 30px;
+    padding-left: 26px;
+    line-height: 5px;
+    font-size: 12px;
+    outline: none;
+    background-color: #363942;
+    color: #d3d3d3;
+    border: 1px solid #4d4c4c;
+}
+
+.property_row#INDICATOR_GRID .minicolors-theme-fontColor.minicolors-position-right .minicolors-swatch {
+    left: 5px;
+    width: 20px;
+}
+
+.property_row#INDICATOR_GRID .minicolors.minicolors-theme-fontColor.minicolors-position-bottom.minicolors-position-left {
+    margin: 5px 5px 0 0;
+}
+
+.property_row#INDICATOR_GRID .minicolors.minicolors-theme-fontColor.minicolors-position-bottom.minicolors-position-right {
+    margin: 5px 0 0 5px;
+}
+
+.GridIndicator .property_row#INDICATOR_GRID .Grid_BorderWidth input,
+.GridIndicator .property_row#INDICATOR_GRID .Grid_Padding input,
+.GridIndicator .property_row#INDICATOR_GRID .Grid_Radius input {
+    flex: 1;
+}
+
+.GridIndicator .property_row#UNIT,
+.GridIndicator .property_row#GRID_NUMBER {
+    width: 20%;
+}
+
+.GridIndicator .property_row#BACKGROUND_OPACITY {
+    width: 100%;
+}
+
+
+
+
+
+
+
+/* API_URI_SETTING */
+
+.property_row#API_URI_SETTING {
+    position: relative;
+    float: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.property_row#API_URI_SETTING .sub_rows {
+    border: 1px solid #4d4c4c;
+    padding: 5px;
+}
+
+.property_row#API_URI_SETTING .sub_row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 3px 0;
+}
+
+.property_row#API_URI_SETTING .sub_row textarea {
+    width: 100%;
+    height: 60px;
+    resize: none;
+    font-size: 12px;
+    margin: 0;
+    padding: 5px;
+    position: relative;
+    float: left;
+    border: 1px solid #4d4c4c;
+    background-color: #363942;
+    color: #d3d3d3;
+    outline: none;
+}
+
+.property_row#API_URI_SETTING .sub_row .desc {
+    width: 70px;
+    text-align: center;
+    padding-right: 5px;
+}
+
+.property_row#API_URI_SETTING .sub_row .val {
+    flex: 1;
+    align-items: center;
+    display: flex;
+}
+
+.property_row#API_URI_SETTING .sub_row.API_FREQUENCY input {
+    width: 80%;
+}
+
+.property_row#API_URI_SETTING .sub_row.API_FREQUENCY select {
+    width: 50px;
+    height: 30px;
+    border: 1px solid #4d4c4c;
+    margin: 0;
+}
+
+.property_row#API_URI_SETTING .sub_row.API_HEADERS input::placeholder {
+    color: #DADADA;
+}
+
+.property_row#API_URI_SETTING .sub_row.API_HEADERS .addHeader {
+    font-size: 10px;
+    background-color: #ddd;
+    color: #7d7d7d;
+    padding: 0px;
+    text-align: center;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.property_row#API_URI_SETTING .sub_row.API_HEADERS .addHeader:hover {
+    background-color: #c5c5c5;
+    color: #fff;
+}
+
+.property_row#API_URI_SETTING .sub_row.API_HEADERS .removeHeader {
+    height: 30px;
+    background: #ff9090;
+    color: #fff;
+    padding: 5px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.property_row#API_URI_SETTING .sub_row.API_HEADERS .removeHeader:hover {
+    background: #fa5c5c
+}
+

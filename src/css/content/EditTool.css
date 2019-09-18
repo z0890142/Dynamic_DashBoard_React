@@ -1,0 +1,53 @@
+#EditTool{
+    position: relative;
+    float: left;
+    width: 0;
+    height: 100%;
+    font-family: "微軟正黑體", verdana, Arial, sans-serif;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 0.3s 0.15s;
+}
+
+#EditTool.opened{
+    width: 100%;
+    padding: 5px;
+    opacity: 1;
+    overflow: visible;
+}
+
+#EditTool .content{
+    position: relative;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#EditTool .content .editToolBtn{
+    position: relative;
+    float: left;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    color: #d5d6d0;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+#EditTool .content .editToolBtn:hover{
+    background-color: #3194ec;
+    color: #fff;
+}
+
+#EditTool .content .editToolBtn.disabled,
+#EditTool .content .editToolBtn.disabled:hover{
+    background: none;
+    color: #464646;
+}

@@ -1,0 +1,93 @@
+#SettingContainer{
+	/*max-width: 30%;*/
+	width: 50px;
+	height: 100%;
+	background-color: #272E38;
+	padding-left: 50px; 
+	position: relative;
+	float: left;
+    box-shadow: 1px 0 2px #181818;
+    transition: width 0.3s;
+    color: #d3d3d3;
+    flex-shrink: 0;
+}
+
+#SettingContainer .controlPanel{
+	position: absolute;
+	left: 0;
+	width: 50px;
+	height: 100%;
+	background-color: #363942;
+}	
+
+#SettingContainer .controlPanel .menu{
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	font-size: 30px;
+	color: #606165;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+#SettingContainer .controlPanel .menu.current,
+#SettingContainer .controlPanel .menu:hover{
+	background-color: #272e38;
+    color: #fff;
+}
+
+/* EDIT_TOOL MODE */
+#SettingContainer.EDIT_TOOL{
+	width: 100px;
+}
+
+#SettingContainer.EDIT_TOOL + #MainContainer{
+	width: calc(100% - 100px);
+}
+
+/* COMP_CREATE MODE */
+#SettingContainer.COMP_CREATE{
+	width: 350px;
+}
+
+#SettingContainer.COMP_CREATE + #MainContainer{
+	width: calc(100% - 350px);
+}
+
+/* COMP_SETTING MODE */
+#SettingContainer.COMP_SETTING{
+	width: 400px;
+}
+
+#SettingContainer.COMP_SETTING + #MainContainer{
+	width: calc(100% - 400px);
+}
+
+/* PAGE_SETTING MODE */
+#SettingContainer.PAGE_SETTING{
+	width: 400px;
+}
+
+#SettingContainer.PAGE_SETTING + #MainContainer{
+	width: calc(100% - 400px);
+}
+
+/* JSON_SETTING MODE */
+#SettingContainer.JSON_SETTING{
+	width: 100%;
+}
+
+#SettingContainer.JSON_SETTING + #MainContainer{
+	width: 0;
+	overflow: hidden;
+}
+
+/* SYS_CONFIG MODE */
+#SettingContainer.SYS_CONFIG{
+	width: 300px;
+}
+
+#SettingContainer.SYS_CONFIG + #MainContainer{
+	width: calc(100% - 300px);
+}

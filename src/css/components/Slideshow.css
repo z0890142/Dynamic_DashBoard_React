@@ -1,0 +1,150 @@
+/* 共用樣式 */
+.Slideshow .propertyRow{
+    margin: 5px;
+}
+
+.Slideshow .propertyRow .propertyName{
+    border-bottom: 1px solid #3e4248;
+    color: #929292;
+    margin-bottom: 10px;
+}
+
+.Slideshow .propertyRow .propertyName .expand{
+    margin: 0 5px 0 0;
+    color: #929292;
+    cursor: pointer;
+}
+
+.Slideshow .propertyRow.collapsed .propertyName .expand,
+.Slideshow .propertyRow .propertyName .expand:hover{
+    color: #fff;
+}
+.Slideshow .propertyRow.collapsed .propertyName{
+    margin-bottom: 0;
+}
+
+.Slideshow .propertyRow .propertyName{
+    width: 100%;
+} 
+
+.Slideshow .propertyRow .propertyVal{
+    margin-bottom: 5px;
+    max-height: 60px;
+    height: 30px;
+    transition: all 0.5s;
+    opacity: 1;
+    color: #757575;
+    position: relative;
+    float: left;
+}
+
+.Slideshow .propertyRow .propertyVal.disabled{
+    opacity: 0.25;
+    display: none;
+}
+
+.Slideshow .propertyRow.collapsed .propertyVal{
+    height: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+
+.Slideshow .propertyRow .subPropName{
+    padding: 0;
+    min-width: 85px;
+    text-align: center;
+    color: #929292;
+    position: relative;
+    float: left;
+    align-self: center;
+}
+
+.Slideshow .propertyRow.collapsed .subPropName{
+    padding: 0 5px 0 5px;
+    display: none;
+}
+
+.Slideshow .propertyRow .subPropVal{
+    flex: 1;
+    width: 100%;
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+
+.Slideshow .propertyRow.collapsed .subPropVal{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.Slideshow .propertyRow select{
+    border: 1px solid #4d4c4c;
+    background-color: #363942;
+    color: #d3d3d3;
+    outline: none;
+    height: 30px;
+    width: 100%;
+}
+
+.Slideshow .propertyRow.CURRENT_PAGES .addToList{
+    position: relative;
+    float: left;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#85d485, #85d485);
+    color: #272e38;
+    border-radius: 2px;
+    display: flex;
+    height: 30px;
+    width: 100px;
+    padding: 0 5px;
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+.Slideshow .propertyRow.PLAYLIST .propertyVal{
+    border: 1px dashed;
+    padding: 5px;
+    max-height: none;
+    height: auto;
+}
+
+.Slideshow .propertyRow.PLAYLIST .propertyVal .playPage{
+    display: flex;
+    background: #589858;
+    color: #fff;
+    border-radius: 3px;
+    padding: 5px;
+    margin-bottom: 3px;
+}
+
+.Slideshow .propertyRow.PLAYLIST .propertyVal .playPage .name{
+    width: 100%;
+}
+
+.Slideshow .propertyRow.PLAYLIST .propertyVal .playPage i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    color: #c1c1c1;
+    cursor: pointer;
+}
+
+.Slideshow .propertyRow.PLAYLIST .propertyVal .playPage i:hover{
+    color: #fff;
+}
+
+.Slideshow .propertyRow.INTERVAL_TIME  .propertyVal input.timeInterval{
+    padding: 5px;
+}
+
+.Slideshow .propertyRow.INTERVAL_TIME  .propertyVal .rangeValue{
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

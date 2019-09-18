@@ -1,0 +1,217 @@
+/* 共用樣式 */
+.Marquee .propertyRow{
+    margin: 5px;
+}
+
+.Marquee .propertyRow .propertyName{
+    border-bottom: 1px solid #3e4248;
+    color: #929292;
+    margin-bottom: 10px;
+}
+
+.Marquee .propertyRow .propertyName .expand{
+    margin: 0 5px 0 0;
+    color: #929292;
+    cursor: pointer;
+}
+
+.Marquee .propertyRow.collapsed .propertyName .expand,
+.Marquee .propertyRow .propertyName .expand:hover{
+    color: #fff;
+}
+.Marquee .propertyRow.collapsed .propertyName{
+    margin-bottom: 0;
+}
+
+.Marquee .propertyRow .propertyName{
+    width: 100%;
+} 
+
+.Marquee .propertyRow .propertyVal{
+    margin-bottom: 5px;
+    max-height: 60px;
+    height: 30px;
+    transition: all 0.5s;
+    opacity: 1;
+    color: #757575;
+    position: relative;
+    float: left;
+}
+
+.Marquee .propertyRow .propertyVal.disabled{
+    opacity: 0.25;
+    display: none;
+}
+
+.Marquee .propertyRow.collapsed .propertyVal{
+    height: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+}
+
+.Marquee .propertyRow .subPropName{
+    padding: 0;
+    min-width: 85px;
+    text-align: center;
+    color: #929292;
+    position: relative;
+    float: left;
+    align-self: center;
+}
+
+.Marquee .propertyRow.collapsed .subPropName{
+    padding: 0 5px 0 5px;
+    display: none;
+}
+
+.Marquee .propertyRow .subPropVal{
+    flex: 1;
+    width: 100%;
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+
+.Marquee .propertyRow.collapsed .subPropVal{
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+ 
+.Marquee .propertyRow.MARQUEE_DIRECTION .propertyVal .direction{
+    padding: 3px;
+    margin: 5px;
+    text-align: center;
+    flex-shrink: 0;
+    position: relative;
+    float: left;
+    flex: 1;
+    align-self: center;
+    cursor: pointer;
+}
+
+.Marquee .propertyRow.MARQUEE_DIRECTION .propertyVal .direction:hover,
+.Marquee .propertyRow.MARQUEE_DIRECTION .propertyVal .direction.current{
+    background: #373c42;
+    color: #fff;
+}
+ 
+.Marquee .propertyRow.MARQUEE_LIST .propertyVal{
+    padding: 5px;
+    max-height: none;
+    height: auto;
+}
+
+.Marquee .propertyRow.MARQUEE_LIST .propertyVal .textboxList{
+    position: relative;
+    float: left;
+    width: 100%;
+    max-height: 350px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.Marquee .propertyRow.MARQUEE_LIST .propertyVal .textboxList .itemBox{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #b1b1b1;
+    display: flex;
+    align-items: center;
+    background-color: #d6d6d6;
+    color: #272e38;
+    overflow: hidden;
+}
+
+.Marquee .propertyRow.MARQUEE_LIST .propertyVal .textboxList .itemBox:hover{
+    opacity: 0.95;
+}
+.Marquee .propertyRow.MARQUEE_LIST .propertyVal .textboxList .itemBox i.fa-sort{
+    font-size: 16px;
+    margin: 5px;
+    color: #969696;
+}
+
+.Marquee .propertyRow.MARQUEE_LIST .propertyVal .textboxList .itemBox i.remove{
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 20px;
+    background: #858585;
+    height: 100%;
+    line-height: 45px;
+    color: #ffffff;
+    text-align: center;
+    transition: right 0.3s;
+}
+
+.Marquee .propertyRow.MARQUEE_LIST .propertyVal .textboxList .itemBox:hover i.remove{
+    right: 0;
+}
+
+.Marquee .propertyRow.MARQUEE_LIST .propertyVal .textboxList .marqueeText{
+    position: relative;
+    float: left;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    opacity: 0.85;
+    height: auto;
+}
+
+.Marquee .propertyRow.MARQUEE_LIST .propertyVal .addBox{
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    overflow-y: auto;
+    background: #71d46a;
+    color: #272e38;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+/* Component Marquee Style */
+.Component.Marquee .marqueeList{
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+
+/*.Component.Marquee .marqueeList[direction=left],
+.Component.Marquee .marqueeList[direction=right]{*/
+/*    display: flex;
+    align-items: center;*/
+/*}*/
+
+.Component.Marquee .marqueeList[direction=left] .marqueeText{
+    position: relative;
+    margin-right: 50%;
+}
+
+.Component.Marquee .marqueeList[direction=right] .marqueeText{
+    position: relative;
+    margin-left: 50%;
+}
+
+.Component.Marquee .marqueeList[direction=up] .marqueeText{
+    display: flex;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.Component.Marquee .marqueeList[direction=down] .marqueeText{
+    display: flex;
+    width: 100%;
+    margin-bottom: 50px;
+}

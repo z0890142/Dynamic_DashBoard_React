@@ -1,0 +1,164 @@
+#CompAddWindow {
+    position: relative;
+    float: left;
+    width: 0;
+    height: 100%;
+    font-family: "微軟正黑體", verdana, Arial, sans-serif;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 0.3s 0.15s;
+    -webkit-touch-callout: none;
+     /* iOS Safari */
+     -webkit-user-select: none;
+     /* Chrome/Safari/Opera */
+     -khtml-user-select: none;
+     /* Konqueror */
+     -moz-user-select: none;
+     /* Firefox */
+     -ms-user-select: none;
+     /* Internet Explorer/Edge */
+     user-select: none;
+     /* Non-prefixed version, currently
+     not supported by any browser */
+}
+
+#CompAddWindow.opened {
+    width: 100%;
+    padding: 5px;
+    opacity: 1;
+    overflow: visible;
+}
+
+#CompAddWindow .setting {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*padding: 0 5px 5px 5px;*/
+}
+
+#CompAddWindow .propertyRow {
+    margin: 5px 5px 10px;
+    position: relative;
+    float: left;
+    width: calc(100% - 10px);
+    box-sizing: border-box;
+}
+
+#CompAddWindow .propertyRow .propertyName {
+    border-bottom: 1px solid #4d4c4c;
+    color: #b8c987;
+    margin-bottom: 10px;
+}
+
+#CompAddWindow .propertyRow .propertyName .expand {
+    margin: 0 5px 0 0;
+    /*color: #646464;*/
+    cursor: pointer;
+}
+
+#CompAddWindow .propertyRow.collapsed .propertyName .expand,
+#CompAddWindow .propertyRow .propertyName .expand:hover {
+    /*color: #c5c5c5;*/
+}
+
+#CompAddWindow .propertyRow.collapsed .propertyName {
+    margin-bottom: 0;
+}
+
+#CompAddWindow .propertyRow .propertyName {
+    width: 100%;
+}
+
+#CompAddWindow .propertyRow .propertyVal {
+    margin-bottom: 5px;
+    transition: all 0.5s;
+    opacity: 1;
+    flex-wrap: wrap;
+}
+
+#CompAddWindow .propertyRow.collapsed .propertyVal {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#CompAddWindow .propertyRow.collapsed .subPropName {
+    padding: 0 5px 0 5px;
+}
+
+#CompAddWindow .propertyRow .subPropName {
+    padding: 5px;
+    min-width: 85px;
+    color: #898989;
+    text-align: center;
+}
+
+#CompAddWindow .propertyRow.collapsed .subPropName {
+    display: none;
+}
+
+#CompAddWindow .propertyRow .subPropVal {
+    flex: 1;
+}
+
+#CompAddWindow .propertyRow.collapsed .subPropVal {
+    display: none;
+}
+
+
+#CompAddWindow .propertyVal .new_component {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #a9a7a7;
+    /*padding: 5px;*/
+    width: 85px;
+    margin: 5px 5px 5px 0;
+    cursor: pointer;
+}
+
+#CompAddWindow .propertyVal .new_component:hover {
+    color: #b8c987;
+}
+
+
+#CompAddWindow .propertyVal .new_component.locking {
+    color: #3b3e42;
+}
+
+#CompAddWindow .propertyVal .new_component .component_icon {
+    font-size: 30px;
+    padding: 0 5px;
+    /*color: #696969;*/
+}
+
+#CompAddWindow .propertyVal .new_component .component_name {
+    flex: 1;
+    font-size: 14px;
+    line-height: initial;
+    text-align: center;
+    margin: 5px;
+    padding: 0;
+    word-break: break-all;
+    font-family: 微軟正黑體;
+    line-height: normal;
+}
+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+    #CompAddWindow .propertyVal .new_component .component_name {
+        flex: none;
+        width: 100%;
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+        white-space: pre;
+    }
+}
