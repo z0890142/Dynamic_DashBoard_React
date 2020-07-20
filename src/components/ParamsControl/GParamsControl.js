@@ -2,14 +2,19 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import TextField from '@material-ui/core/TextField';
 import {withStyles} from "@material-ui/core/styles";
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
+
 import classNames from 'classnames';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import ImageParams from "./ImageParams"
 import TextLableParam from "./TextLableParam"
+import IframeParams from "./IframeParams"
 
 import IconButton from '@material-ui/core/IconButton';
 import Add from '@material-ui/icons/Add';
 import Remove from '@material-ui/icons/Remove';
+import { isBoolean } from 'util';
 
 const styles = theme => ({
     root: {
@@ -44,7 +49,9 @@ class GParamsControl extends React.Component {
     if(action==="add"){
         this.props.MotifyTarget.zIndex+=1
     }else{
-        this.props.MotifyTarget.zIndex-=1
+        if (this.props.MotifyTarget.zIndex>0){
+            this.props.MotifyTarget.zIndex-=1
+        }
     }
     
     this.props.modifyParams(this.props.MotifyTarget)
@@ -52,13 +59,24 @@ class GParamsControl extends React.Component {
 
     ////////////TextField value變動處理///////////////
     handleChange = (colume_name )=> event => {
+        console.log(this.props.MotifyTarget.embeddedUrl)
         var data=this.props.MotifyTarget
         if(colume_name==="fontColor"||colume_name==="background"){
             // data[colume_name]=event.hex
             data[colume_name]="rgba("+event.rgb.r+","+event.rgb.g+","+event.rgb.b+","+event.rgb.a+")"
+        }else if(colume_name==="isScrolling"){
+            switch (event.target.value){
+                case "no":
+                        data[colume_name]="yes"
+                        break;
+                case "yes":
+                        data[colume_name]="no"
+                        break;
+            }
         }else{
             data[colume_name]=event.target.value
         }
+        console.log( data)
 
         this.props.modifyParams(data)
     };
@@ -72,6 +90,10 @@ class GParamsControl extends React.Component {
         this.props.modifyParams(data)
     };
 
+    handleDeleteComponent=()=>{
+        this.props.deleteModifyTarget(this.props.MotifyTarget)
+    }
+
     render() {
         const {classes} = this.props;
         const {type} = this.props.MotifyTarget
@@ -80,7 +102,10 @@ class GParamsControl extends React.Component {
             sub_params=<ImageParams handleImageChange={this.handleImageChange}></ImageParams>
         }else if(this.props.MotifyTarget.type==="textLables"){
             sub_params=<TextLableParam handleChange={this.handleChange} MotifyTarget={this.props.MotifyTarget}></TextLableParam>
+        }else if(this.props.MotifyTarget.type==="iframe"){
+            sub_params=<IframeParams handleChange={this.handleChange} MotifyTarget={this.props.MotifyTarget}></IframeParams>
 
+            
         }
         return (
             <div>
@@ -92,6 +117,7 @@ class GParamsControl extends React.Component {
                         value={ this.props.MotifyTarget.item_name}
                         onChange={this.handleChange('item_name')}
                         margin="normal"/>
+
                 </ListItem>
                 <ListItem button>
                     <TextField
@@ -134,8 +160,18 @@ class GParamsControl extends React.Component {
                     </IconButton>
                 </ListItem>
 
-                
                 {sub_params}
+
+                <ListItem>
+
+                </ListItem>
+                <ListItem>
+                    <Button variant="contained" color="secondary" style={{width:"100%"}} onClick={this.handleDeleteComponent}>
+                        Delete
+                        <DeleteIcon className={classes.rightIcon} />
+                    </Button>
+                </ListItem>
+                
 
 
             </div>

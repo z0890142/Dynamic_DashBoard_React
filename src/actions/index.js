@@ -25,6 +25,12 @@ export const addGis = (Gis) => {
       Gis
   }
 }
+export const addIframe = (Iframe) => {
+  return {
+      type: 'ADD_Iframe',
+      Iframe
+  }
+}
 export const changeDiv = (Component,dest) => {
   return {
       type: 'Change_Div',

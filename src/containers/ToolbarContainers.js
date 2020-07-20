@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { addTextLabel,addImage,loadPage,addGis } from '../actions'
+import { addTextLabel,addImage,loadPage,addGis,addIframe } from '../actions'
 import Toolbar from '../components/Toolbar'
 import PageList from '../components/funcComponent/PageList'
 
@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
       TextLable: state.textLables,
       Image:state.images,
       Gis:state.gis,
+      Iframe:state.iframe,
       State:state
 
       }
@@ -27,6 +28,9 @@ const mapStateToProps = (state) => {
           },
         addGis:(Gis)=>{
           dispatch(addGis(Gis))
+        },
+        addIframe:(Iframe)=>{
+          dispatch(addIframe(Iframe))
         },
         changeDiv:(component)=>{
             dispatch(changeDiv(component))

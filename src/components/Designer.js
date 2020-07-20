@@ -13,6 +13,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import GParamsControl from './ParamsControl/GParamsControl';
+import ParamsTab from './ParamsControl/ParamsTab';
+
+
 import {ToolbarContainers} from "../containers/ToolbarContainers"
 
 
@@ -20,6 +23,7 @@ import {ForLayout1,ForLayout2} from '../containers/LayoutContainers';
 
 
 const drawerWidth = 240;
+// const drawerWidth = 540;
 
 const styles = theme => ({
     main: {
@@ -144,13 +148,9 @@ class Designer extends React.Component {
         this.setState({open: false});
     };
 
-    submit( event ) {
-        console.log(event)
-    }
 
     /////////////Keyboard event/////////
-    toggleMenu = (event) => {
-        console.log(event)
+    deleteHandler = (event) => {
         if(event.keyCode===46&&this.props.MotifyTarget.length>0){
             this.props.deleteModifyTarget(this.props.MotifyTarget[0])
         }
@@ -167,7 +167,7 @@ class Designer extends React.Component {
             dashboard_layout=<ForLayout2  isDesigner={true}/>
         }
         return (
-            <div className={classes.root} onKeyDown ={this.toggleMenu} tabIndex="0">
+            <div className={classes.root} onKeyDown ={this.deleteHandler} tabIndex="0" >
                 <CssBaseline/>
                 <AppBar
                     position="absolute"
@@ -231,7 +231,9 @@ class Designer extends React.Component {
                             .props
                             .MotifyTarget
                             .map((item, index) => (
-                                <GParamsControl modifyParams={this.props.modifyParams} MotifyTarget={item}></GParamsControl>
+                                // <ParamsTab modifyParams={this.props.modifyParams} MotifyTarget={item} deleteModifyTarget={this.props.deleteModifyTarget}></ParamsTab>
+
+                                <GParamsControl modifyParams={this.props.modifyParams} MotifyTarget={item} deleteModifyTarget={this.props.deleteModifyTarget}></GParamsControl>
                             ))
 }
                     </List>

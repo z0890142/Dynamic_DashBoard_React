@@ -7,7 +7,6 @@ import {withStyles} from "@material-ui/core/styles";
 import TableCell from "@material-ui/core/TableCell";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import Paper from "@material-ui/core/Paper";
-import Button from '@material-ui/core/Button';
 
 import {AutoSizer, Column, SortDirection, Table} from "react-virtualized";
 const axios = require('axios');

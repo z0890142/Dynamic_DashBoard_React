@@ -14,6 +14,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogActions from '@material-ui/core/DialogActions';
+import Web from '@material-ui/icons/Web';
+
 
 import FontDownload from '@material-ui/icons/FontDownload';
 import Divider from '@material-ui/core/Divider';
@@ -141,6 +143,28 @@ class Toolbar extends React.Component {
         return gis
 
     };
+
+    CreateIframe = () => {
+        var iframe = {
+            componentId: "Iframe_" + (this.props.Iframe).length + 1,
+            item_name: "",
+            height: "50",
+            value: "",
+            width: "50",
+            divName: "div1",
+            type: "iframe",
+            embeddedUrl:"",//連接的URL
+            embeddType:"link_page",
+            linkPageId:-1,//連接的pageID
+            isScrolling:"no",
+            x: 0,
+            y: 0,
+            zIndex: 0
+        }
+        return iframe
+
+    };
+
     SavePage(params) {
         var saveData = {
             name: this.state.SavePageName,
@@ -171,14 +195,18 @@ class Toolbar extends React.Component {
         axios({
             method: 'get',
             url: 'http://127.0.0.1:8088/v1/loadPage/' + this.state.SelectPage
-        }).then((response) => { //不用箭頭的話會讀不到this.state     //handle success
+        })
+        .then((response) => { //不用箭頭的話會讀不到this.state     //handle success
             this
                 .props
                 .loadPage(response.data.ResultMessage.PageData)
+                
+            this.setState({Loadopen: false});
 
         })
-            .catch(function (response) { //handle error
-            });
+        .catch(function (response) { //handle error
+        });
+
     }
     render() {
 
@@ -222,6 +250,20 @@ class Toolbar extends React.Component {
                     </ListItemIcon>
                     <ListItemText primary="新增地圖"/>
                 </ListItem>
+
+                <ListItem
+                    button
+                    onClick={() => {
+                    this
+                        .props
+                        .addIframe(this.CreateIframe())
+                }}>
+                    <ListItemIcon>
+                        <Web/>
+                    </ListItemIcon>
+                    <ListItemText primary="Iframe"/>
+                </ListItem>
+
                 <ListItem
                     button
                     onClick={() => {

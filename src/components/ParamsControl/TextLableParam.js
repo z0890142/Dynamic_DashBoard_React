@@ -43,8 +43,10 @@ class GParamsControl extends React.Component {
         //切換更改顏色的目標以及設定顯示現在該目標的顏色
         if(this.state.ColorTarget==='fontColor'){
             this.setState({color:nextProps.MotifyTarget.fontColor})
+            // return {color:nextProps.MotifyTarget.fontColor}
         }else{
             this.setState({color:nextProps.MotifyTarget.background})
+            // return {color:nextProps.MotifyTarget.background}
         }
     } 
 

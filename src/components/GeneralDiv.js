@@ -2,6 +2,7 @@ import React from 'react';
 import TextLable from './subComponents/TextLable';
 import Image from './subComponents/Image';
 import Gis from './subComponents/Gis';
+import Iframe from './subComponents/Iframe';
 
 import {withStyles} from '@material-ui/core/styles';
 import ReactResizeDetector from 'react-resize-detector';
@@ -42,20 +43,27 @@ class GeneralDiv extends React.Component {
                 .props
                 .TextLable
                 .filter(TextLable => TextLable.divName===this.props.id.split("_")[1])
-                .map((item, index) => (<TextLable key={index} isDesigner={this.props.IsDesigner} div_size={this.state.div_size} data={item} getDivName={this.props.getDivName} modifyParams={this.props.modifyParams}  setModifyTarget={this.props.setModifyTarget} index={index}/>))
+                .map((item, index) => (<TextLable key={this.props.getDivName+"TextLable"+index} isDesigner={this.props.IsDesigner} div_size={this.state.div_size} data={item} getDivName={this.props.getDivName} modifyParams={this.props.modifyParams}  setModifyTarget={this.props.setModifyTarget} index={index}/>))
             }
             
             {this
                 .props
                 .Image
                 .filter(Image => Image.divName===this.props.id.split("_")[1])
-                .map((item, index) => (<Image key={index} isDesigner={this.props.IsDesigner} div_size={this.state.div_size} data={item} getDivName={this.props.getDivName}  modifyParams={this.props.modifyParams}  setModifyTarget={this.props.setModifyTarget} index={index}/>))
+                .map((item, index) => (<Image key={this.props.getDivName+"Image"+index} isDesigner={this.props.IsDesigner} div_size={this.state.div_size} data={item} getDivName={this.props.getDivName}  modifyParams={this.props.modifyParams}  setModifyTarget={this.props.setModifyTarget} index={index}/>))
             } 
             {this
                 .props
                 .Gis
                 .filter(Gis => Gis.divName===this.props.id.split("_")[1])
-                .map((item, index) => (<Gis key={index} isDesigner={this.props.IsDesigner} div_size={this.state.div_size} data={item} getDivName={this.props.getDivName}  modifyParams={this.props.modifyParams}  setModifyTarget={this.props.setModifyTarget} index={index}/>))
+                .map((item, index) => (<Gis key={this.props.getDivName+"Gis"+index} isDesigner={this.props.IsDesigner} div_size={this.state.div_size} data={item} getDivName={this.props.getDivName}  modifyParams={this.props.modifyParams}  setModifyTarget={this.props.setModifyTarget} index={index}/>))
+            } 
+
+            {this
+                .props
+                .Iframe
+                .filter(Iframe => Iframe.divName===this.props.id.split("_")[1])
+                .map((item, index) => (<Iframe key={this.props.getDivName+"Iframe"+index} isDesigner={this.props.IsDesigner} div_size={this.state.div_size} data={item} getDivName={this.props.getDivName}  modifyParams={this.props.modifyParams}  setModifyTarget={this.props.setModifyTarget} index={index}/>))
             } 
 
             </div>

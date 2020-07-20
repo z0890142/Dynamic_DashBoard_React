@@ -8,6 +8,7 @@ return {
   TextLable: state.textLables,
   Image:state.images,
   Gis:state.gis,
+  Iframe:state.iframe,
   IsDesigner:state.isDesigner
   }
 }
